@@ -5,12 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Bootstrap 5 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom Styles -->
+    <title>@yield('header') - {{ config('app.name') }}</title>
     <link rel="stylesheet" href="{{ asset('assets/compiled/css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/compiled/css/app-dark.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/compiled/css/iconly.css') }}">
@@ -22,28 +17,29 @@
     <script src="{{ asset('assets/static/js/initTheme.js') }}"></script>
 
     <div id="app">
-        @include('layouts.sidebar') <!-- Sidebar -->
+        @include('admin.layouts.sidebar')
+        <div id="main">
+            <header class="mb-3">
+                <a href="#" class="burger-btn d-block d-xl-none">
+                    <i class="bi bi-justify fs-3"></i>
+                </a>
+            </header>
 
-        <header class="mb-3">
-            @isset($header)
-                {{ $header }}
-            @endisset
-        </header>
-
-        <main>
+            <div class="page-heading">
+                <h3>@yield('header')</h3>
+            </div>
             @yield('content')
-        </main>
-    </div>
+        </div>
 
-    <!-- Bootstrap Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Bootstrap Scripts -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Custom Scripts -->
-    <script src="{{ asset('assets/static/js/components/dark.js') }}"></script>
-    <script src="{{ asset('assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
-    <script src="{{ asset('assets/compiled/js/app.js') }}"></script>
-    <script src="{{ asset('assets/extensions/apexcharts/apexcharts.min.js') }}"></script>
-    <script src="{{ asset('assets/static/js/pages/dashboard.js') }}"></script>
+        <!-- Custom Scripts -->
+        <script src="{{ asset('assets/static/js/components/dark.js') }}"></script>
+        <script src="{{ asset('assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
+        <script src="{{ asset('assets/compiled/js/app.js') }}"></script>
+        <script src="{{ asset('assets/extensions/apexcharts/apexcharts.min.js') }}"></script>
+        <script src="{{ asset('assets/static/js/pages/dashboard.js') }}"></script>
 </body>
 
 </html>
